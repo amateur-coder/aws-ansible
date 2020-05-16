@@ -6,7 +6,7 @@
     keypair: aws-key
     instance_type: t2.micro
     security_group: default
-    image: ami-01a6e31ac994bbc09
+    image: ami-09e5afc68eed60ef4
     region: eu-west-2
     subnet: subnet-082213e51ccfdcaa4 
   tasks:
@@ -16,6 +16,7 @@
          group: "{{ security_group }}"
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
+         user_data: "{{ lookup('file', 'user_data') }}"
          wait: true
          region: "{{ region }}"
          vpc_subnet_id: "{{ subnet }}"
