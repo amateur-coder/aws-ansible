@@ -10,6 +10,7 @@ echo source ~/aws-ansible/ansible/bin/activate
 echo pip install pip --upgrade
 echo pip install boto
 echo pip install boto3
+echo pip install ansible
 echo aws configure 
 echo ansible-playbook  -i inventory ec2.yml
 echo "==================================================="
