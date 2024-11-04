@@ -6,16 +6,16 @@
     keypair: aws-key
     instance_type: t2.micro
     security_group: default
-    image: ami-04a37924ffe27da53
+    image_id: ami-04a37924ffe27da53  # Update this line
     region: ap-south-1
-    subnet: subnet-00c8f42b771e7fd49  # Updated subnet ID
+    subnet: subnet-00c8f42b771e7fd49
   tasks:
     - name: Launch instance
       amazon.aws.ec2_instance:
         key_name: "{{ keypair }}"
         group: "{{ security_group }}"
         instance_type: "{{ instance_type }}"
-        image: "{{ image }}"
+        image_id: "{{ image_id }}"  # Update this line
         user_data: "{{ lookup('file', 'user_data') }}"
         wait: true
         region: "{{ region }}"
