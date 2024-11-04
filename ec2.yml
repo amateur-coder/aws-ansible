@@ -6,20 +6,21 @@
     keypair: aws-key
     instance_type: t2.micro
     security_group: default
-    image_id: ami-04a37924ffe27da53  # Update this line
+    image_id: ami-04a37924ffe27da53
     region: ap-south-1
     subnet: subnet-00c8f42b771e7fd49
   tasks:
     - name: Launch instance
       amazon.aws.ec2_instance:
         key_name: "{{ keypair }}"
-        group: "{{ security_group }}"
+        security_groups: ["{{ security_group }}"]  # Updated
         instance_type: "{{ instance_type }}"
-        image_id: "{{ image_id }}"  # Update this line
+        image_id: "{{ image_id }}"
         user_data: "{{ lookup('file', 'user_data') }}"
         wait: true
         region: "{{ region }}"
-        vpc_subnet_id: "{{ subnet }}"
-        assign_public_ip: yes
+        network:
+          vpc_subnet_id: "{{ subnet }}"
+          assign_public_ip: yes  # Moved to network dictionary
       register: ec2
 
